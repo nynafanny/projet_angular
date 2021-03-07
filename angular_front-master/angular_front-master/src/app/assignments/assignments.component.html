@@ -1,0 +1,56 @@
+<main class="container">
+  <nav>
+    <a routerLink="/add">
+      <button mat-fab color="white" class="ajouterBtn" style="position: fixed;right: 10px; bottom:10px; z-index: 999;">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" color="danger">add</mat-icon>
+      </button>
+    </a>
+  </nav>
+
+  <!-- <mat-list > -->
+    <!-- <h3 mat-subheader>Date de rendu : {{a.end_date }}</h3> -->
+    <!-- <nav>
+      <a routerLink="/assignment/{{a.id}}">
+        <mat-list-item (click)="assignmentClique(a);">
+          <p appRendu *ngIf="a.rendu; else nonsoumis">
+            Devoir intitulé {{a.nom}} rendu.
+          </p>
+
+          <ng-template #nonsoumis>
+            <p [ngClass]="{nonrendu:true}">le devoir {{a.nom}} n'a pas été rendu...</p>
+          </ng-template>
+          <mat-divider></mat-divider>
+        </mat-list-item>
+      </a>
+    </nav> -->
+    <div class="container">
+      <div class="row">
+        <div class="col-4" *ngFor="let a of assignments" style="margin-bottom: 20px">
+          
+        
+        <mat-card class="example-card" style="border-left: 10px solid;" [ngStyle]="{'border-color': (a.delivered) ? 'blue' : 'orange'}" >
+          <mat-card-header>
+
+            <div mat-card-avatar class="example-header-image" matTooltip="{{a.teacher.full_name}}" style="background-size: cover; background-image: url('{{ a.teacher.profil}}');"></div>
+            <mat-card-title style="text-align: left;">{{ a.title }}</mat-card-title>
+            <mat-card-subtitle>Date de rendu : {{a.end_date}}</mat-card-subtitle>            
+          </mat-card-header>
+          <img mat-card-image src="{{a.illustration}}"
+            alt="Photo of a Shiba Inu">
+          <!-- <mat-card-content>              
+          </mat-card-content> -->
+          <mat-card-actions>
+            <!-- <button mat-button fab>Detail</button>
+            <button mat-button>Detail</button> -->
+            <a mat-raised-button mat-fab routerLink="/assignment/{{a.id}}" color="white"><mat-icon>info</mat-icon></a>
+            <a mat-raised-button mat-fab routerLink="/assignment/{{a.id}}/edit/" color="white" ><mat-icon color="warn">edit</mat-icon></a>
+          </mat-card-actions>
+
+        </mat-card>
+      </div>
+      </div>
+    </div>
+
+
+  <!-- </mat-list> -->
+</main>

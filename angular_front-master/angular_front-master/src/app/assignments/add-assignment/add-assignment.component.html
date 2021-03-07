@@ -1,0 +1,94 @@
+<div class="container">
+  <mat-card style="max-width: 600px; margin-top: 30px!important;" class="m-auto" elevation="12">
+    <mat-card-header>
+      <mat-card-title style="color:#3F51B5">Ajouter un nouveau Devoir</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+
+  <mat-horizontal-stepper [linear]="isLinear" #stepper style="max-width: 700px;" class="m-auto">
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup" style="width: 100%!important;">
+        <ng-template matStepLabel>Devoir</ng-template>
+        <div class="container m-auto">
+          <mat-form-field appearance="fill" style="width: 100%">
+            <mat-label>Titre du devoir</mat-label>
+            <input matInput placeholder="Titre du devoir" formControlName="titleCtrl" required>
+            <mat-hint>Veuillez le titre du devoir</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="container m-auto">
+          <mat-form-field appearance="fill" style="width: 100%">
+            <mat-label>Note 1-20</mat-label>
+            <input matInput placeholder="Placeholder" type="number" formControlName="markCtrl" required>
+            <mat-icon matSuffix>user</mat-icon>
+            <mat-hint>Veuillez saisir la note obtenu</mat-hint>
+          </mat-form-field>          
+        </div>
+        <div class="container m-auto">
+          <mat-form-field appearance="fill" style="width: 100%">
+            <input matInput [matDatepicker]="picker" placeholder="Edition de la date" formControlName="end_dateCtrl" name="date">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>        
+        <div class="container">
+          <mat-checkbox class="example-margin" formControlName="deliveredCrtl">Devoir rendu</mat-checkbox>
+        </div>
+        <div class="container">
+          <div class="col-12" style="width:100%">
+            <button mat-button matStepperNext style="border: 1px solid #3F51B5;">Suivant</button>
+          </div>
+        </div>
+        
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Professeur">
+      <form [formGroup]="secondFormGroup">
+        <div class="container m-auto">
+          <mat-form-field appearance="fill" style="width: 100%">
+            <mat-label>Nom & Prenoms</mat-label>
+            <input matInput formControlName="full_nameCtrl" placeholder="Nom & Prenom" required>
+          </mat-form-field>
+        </div>
+        <div class="container m-auto">
+          <mat-form-field appearance="fill" style="width: 100%">
+            <mat-label>Importer une photo</mat-label>
+            <ngx-mat-file-input formControlName="profilCtrl" placeholder="Basic fill placeholder" required [accept]="['.png', '.jpeg', '.jpg', '.gif']"></ngx-mat-file-input>
+            <mat-icon matSuffix>add_a_photo</mat-icon>
+            <!-- <input matInput formControlName="profilCtrl" type="file" placeholder="Une Photo de profile" > -->            
+          </mat-form-field>
+        </div>
+
+        <div>
+          <button mat-button matStepperPrevious>Retour</button>
+          <button mat-button matStepperNext>Suivant</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thridFormGroup" label="Etudiant">
+      <form [formGroup]="thridFormGroup">
+
+        <div class="container m-auto">
+          <mat-form-field appearance="fill" style="width: 100%">
+            <mat-label>Nom & Prénoms</mat-label>
+            <input matInput formControlName="student_full_nameCtrl" placeholder="Nom & Prenoms" required>
+          </mat-form-field>
+        </div>
+
+        <button mat-button matStepperPrevious>Retour</button>
+        <button mat-button matStepperNext>Suivant</button>      
+</form>
+</mat-step>
+<mat-step>
+  <ng-template matStepLabel>Terminé</ng-template>
+  <p>Vous avez mainteant terminé</p>
+  <div>
+    <button mat-button matStepperPrevious>Retour</button>
+    <button mat-button (click)="stepper.reset()">Enregistrer</button>
+    <button mat-button (click)="submitForm()">Enregistrer</button>
+  </div>
+</mat-step>
+</mat-horizontal-stepper>
+
+</div>

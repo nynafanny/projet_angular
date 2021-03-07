@@ -1,0 +1,18 @@
+<mat-toolbar *ngIf="authService.loggedIn()">
+  <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+   <mat-icon>menu</mat-icon>
+ </button> -->
+ <span style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">{{ titre }}</span>
+ <span class="example-spacer"></span>
+ <a  mat-stroked-button routerLink="/" class="mr-1" ><mat-icon>work</mat-icon></a>
+ <a mat-raised-button  routerLink="/" class="mr-1"  ><mat-icon>personal-z</mat-icon></a>
+ <!-- <a mat-raised-button  routerLink="/users" color="accent">Administration<mat-icon></mat-icon></a> -->
+ <button mat-raised-button (click)="authService.logOutUser()"><mat-icon title="se deconnecter" color="warn" >logout</mat-icon><span color="warn">Deconnexion</span></button>
+</mat-toolbar>
+
+<!-- <mat-slide-toggle color="primary" (click)="login()">Log In</mat-slide-toggle> -->
+
+<!--
+<app-assignments></app-assignments>
+-->
+<router-outlet></router-outlet>
